@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="estilos.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+	<title>Elevarte</title>
+</head>
+
+<body>
+	<header>
+		<h1>Elevarte <br>
+			Publicidad</h1>
+		<nav>
+			<ul>
+				<li><a href="#presentacion">Presentación</a></li>
+				<li><a href="#equipo">Nuestro Equipo</a></li>
+				<li><a href="#contacto">Contacto</a></li>
+				<li><a href="#cotizacion">Cotización</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section id="presentacion"> <br>
+			<h2>Presentación de la Agencia</h2>
+			<p>En nuestra agencia de publicidad, nos enfocamos en crear campañas publicitarias efectivas que generen
+				resultados positivos para nuestros clientes. Contamos con un equipo de profesionales en marketing,
+				diseño y publicidad que trabajan en conjunto para lograr los objetivos de cada proyecto y satisfacer las
+				necesidades de nuestros clientes.</p>
+		</section>
+		<section id="equipo"> <br>
+			<h2>Nuestro Equipo</h2>
+			<p>Conoce a nuestro equipo de expertos:</p>
+			<ul>
+				<li><strong>Juan Pérez</strong>, Director de Marketing</li>
+				<li><strong>María Lopez</strong>, Diseñadora Gráfica</li>
+				<li><strong>Carlos Prado</strong>, Especialista en Publicidad en Redes Sociales</li>
+			</ul>
+		</section>
+		<section id="contacto"> <br>
+			<h2>Contacto</h2>
+			<form id="contact-form">
+				<label for="name">Nombre:</label>
+				<input type="text" id="name" name="name" required>
+				<label for="email">Email:</label>
+				<input type="email" id="email-contacto" name="email" required>
+				<label for="message">Mensaje:</label>
+				<textarea id="message" name="message" required></textarea>
+				<button type="submit">Enviar</button>
+			</form>
+
+		</section>
+		<section id="cotizacion"> <br>
+			<h2>Cotización</h2>
+			<form id="formulario">
+				<div id="step1" class="step">
+					<h2>Información del Cliente</h2>
+					<label for="nombre">Nombre:</label>
+					<input type="text" id="nombre" name="nombre" required>
+					<br>
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" required>
+					<br>
+					<button class="nextBtn" type="button">Siguiente</button>
+				</div>
+
+				<div id="step2" class="step">
+					<h2>Detalles del Proyecto</h2>
+					<label for="descripcion">Descripción del proyecto:</label>
+					<textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea>
+					<br>
+					<label for="presupuesto">Presupuesto estimado:</label>
+					<input type="number" id="presupuesto" name="presupuesto" required>
+					<br>
+					<button class="prevBtn" type="button">Anterior</button>
+					<button class="nextBtn" type="button">Siguiente</button>
+				</div>
+
+				<div id="step3" class="step">
+					<h2>Confirmación</h2>
+					<p>Por favor, revise la siguiente información antes de enviar la cotización:</p>
+					<div id="resumen"></div>
+					<button class="prevBtn" type="button">Anterior</button>
+					<!-- <button class="submitBtn" type="submit">Enviar</button> -->
+					<input type="submit" value="Confirmar Presupuesto (PDF)">
+				</div>
+			</form>
+		</section>
+	</main>
+	<br>
+	<div class="wizard">
+		<nav class="wizard-navigation">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					<a class="nav-link active" href="#step1a">Paso 1</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" href="#step2a">Paso 2</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" href="#step3a">Paso 3</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" href="#step4a">Paso 4</a>
+				</li>
+			</ul>
+		</nav>
+
+		<form class="wizard-form" id="myForm" method="post">
+			<fieldset id="step1a">
+				<legend>Paso 1: Tipo de reclamo</legend>
+				<div class="form-group">
+					<label for="tipo-reclamo">Tipo de reclamo:</label>
+					<select class="form-control" id="tipo-reclamo" name="tipo-reclamo" required>
+						<option value="">Seleccione una opción</option>
+						<option value="Producto defectuoso">Producto defectuoso</option>
+						<option value="Producto no entregado">Producto no entregado</option>
+						<option value="Cobro indebido">Cobro indebido</option>
+						<option value="Mala atención al cliente">Mala atención al cliente</option>
+						<option value="Otro">Otro</option>
+					</select>
+				</div>
+				<button type="button" id="next1">Siguiente</button>
+			</fieldset>
+
+			<fieldset id="step2a" class="hidden">
+				<legend>Paso 2: Información personal</legend>
+				<div class="form-group">
+					<label for="name">Nombre completo:</label>
+					<input type="text" class="form-control" id="namefull" name="name" required>
+				</div>
+				<div class="form-group">
+					<label for="mail">Correo electrónico:</label>
+					<input type="mail" class="form-control" id="mail" name="mail" required>
+				</div>
+				<div class="form-group">
+					<label for="aTelefono">Teléfono:</label>
+					<input type="tel" class="form-control" id="aTelefono" name="aTelefono" required>
+				</div>
+				<button type="button" class="previous-button">Anterior</button>
+				<button type="button" id="next2" class="next-button">Siguiente</button>
+			</fieldset>
+
+			<fieldset id="step3a" class="hidden">
+				<legend>Paso 3: Detalles del reclamo</legend>
+				<div class="form-group">
+					<label for="description">Descripción:</label>
+					<textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+				</div>
+				<button type="button" class="previous-button">Anterior</button>
+				<button type="button" id="next3" class="next-button">Siguiente</button>
+			</fieldset>
+
+			<fieldset id="step4a" class="hidden">
+				<legend>Paso 4: Confirmación</legend>
+				<p>Por favor revise la siguiente información antes de enviar su reclamo</p>
+				<input type="submit" id="reclamo" value="Enviar reclamo">
+				<h3 class="hidden" id="enviado">Tu reclamo ha sido enviado!</h3>
+			</fieldset>
+		</form>
+	</div>
+	<script src="api.js"></script>
+	<script src="main.js"></script>
+	<br>
+	<footer>
+		<h3>Dirección: Av. Marqués 1234</h3>
+		<p>Copyright © 2023 Elevarte, Inc.</p>
+	</footer>
+</body>
+</html>
